@@ -1,0 +1,1285 @@
+/**
+ * ADVOCATE SHAIKUL KHAN
+ * KNOWLEDGE CENTRE
+ *
+ * DEEP LEGAL RESEARCH DATABASE
+ *
+ * IMPORTANT:
+ * 1. This file is separate from legalData.ts.
+ * 2. Existing legalData.ts must not be overwritten.
+ * 3. Statutory mapping and legal analysis are kept separate.
+ * 4. User-supplied IPC → BNS mappings are treated as a separate source layer.
+ */
+
+export type LegalAct = "BNS" | "BNSS" | "BSA";
+
+export type ResearchSourceType =
+  | "official-statute"
+  | "user-supplied"
+  | "case-law"
+  | "research"
+  | "procedural"
+  | "evidence";
+
+export interface LegacyMapping {
+  act: string;
+  section: string;
+  source: "user-supplied" | "verified";
+}
+
+export interface DeepLegalResearch {
+  act: LegalAct;
+
+  section: string;
+
+  title: string;
+
+  chapter?: string;
+
+  category?: string;
+
+  /**
+   * Exact statutory proposition / verified legal proposition.
+   * This must not be filled with assumptions.
+   */
+  provision?: string;
+
+  /**
+   * Ingredients / essential elements of the offence or provision.
+   */
+  ingredients?: string[];
+
+  /**
+   * Punishment / consequence where applicable.
+   */
+  punishment?: string;
+
+  /**
+   * Procedural requirements.
+   */
+  proceduralRequirements?: string[];
+
+  /**
+   * Evidence requirements / evidentiary issues.
+   */
+  evidenceIssues?: string[];
+
+  /**
+   * Digital / electronic evidence issues.
+   */
+  digitalEvidenceIssues?: string[];
+
+  /**
+   * Defence-oriented issues.
+   */
+  defenceIssues?: string[];
+
+  /**
+   * Cross-examination themes.
+   */
+  crossExaminationIssues?: string[];
+
+  /**
+   * Bail-related considerations.
+   */
+  bailIssues?: string[];
+
+  /**
+   * Important case-law propositions.
+   */
+  caseLaw?: string[];
+
+  /**
+   * IPC / CrPC / Evidence Act legacy mapping.
+   *
+   * IMPORTANT:
+   * User-supplied mappings remain separately identifiable.
+   */
+  legacyMapping?: LegacyMapping[];
+
+  /**
+   * Search keywords.
+   */
+  tags?: string[];
+
+  /**
+   * Research/source classification.
+   */
+  sources?: ResearchSourceType[];
+}
+
+/* =========================================================
+   BNS — CORE RESEARCH FOUNDATION
+   ========================================================= */
+
+export const bnsDeepResearch: DeepLegalResearch[] = [
+  {
+    act: "BNS",
+    section: "3(5)",
+    title: "Acts done by several persons in furtherance of common intention",
+    category: "General Principles",
+
+    provision:
+      "Research entry for the statutory rule concerning acts done by several persons in furtherance of common intention.",
+
+    ingredients: [
+      "Participation of more than one person",
+      "A common intention shared by the participants",
+      "Act done in furtherance of that common intention"
+    ],
+
+    defenceIssues: [
+      "Whether common intention is actually established by evidence",
+      "Whether mere presence is being treated as participation",
+      "Whether the prosecution has proved the accused's individual role",
+      "Whether the alleged acts are actually connected with the alleged common intention"
+    ],
+
+    crossExaminationIssues: [
+      "Specific role attributed to each accused",
+      "Evidence showing formation or existence of common intention",
+      "Conduct before, during and after the occurrence",
+      "Independent evidence connecting the accused with the alleged common intention"
+    ],
+
+    legacyMapping: [
+      {
+        act: "IPC",
+        section: "34",
+        source: "user-supplied"
+      }
+    ],
+
+    tags: [
+      "common intention",
+      "joint liability",
+      "IPC 34",
+      "BNS 3(5)"
+    ],
+
+    sources: [
+      "official-statute",
+      "user-supplied"
+    ]
+  },
+
+  {
+    act: "BNS",
+    section: "61",
+    title: "Criminal conspiracy",
+    category: "Abetment, Criminal Conspiracy and Attempt",
+
+    ingredients: [
+      "Agreement between two or more persons",
+      "Common object or design contemplated by the agreement",
+      "Statutory requirements applicable to the alleged conspiracy"
+    ],
+
+    defenceIssues: [
+      "Whether the prosecution proves an actual agreement",
+      "Whether conspiracy is being inferred merely from association",
+      "Whether there is independent evidence connecting the accused with the alleged conspiracy"
+    ],
+
+    crossExaminationIssues: [
+      "Evidence of the alleged agreement",
+      "Communication between alleged conspirators",
+      "Independent corroboration",
+      "Specific acts attributed to each accused"
+    ],
+
+    legacyMapping: [
+      {
+        act: "IPC",
+        section: "120B",
+        source: "user-supplied"
+      }
+    ],
+
+    tags: [
+      "criminal conspiracy",
+      "agreement",
+      "IPC 120B",
+      "BNS 61"
+    ],
+
+    sources: [
+      "official-statute",
+      "user-supplied"
+    ]
+  },
+
+  {
+    act: "BNS",
+    section: "62",
+    title: "Attempt",
+    category: "Abetment, Criminal Conspiracy and Attempt",
+
+    ingredients: [
+      "Intent to commit the alleged offence",
+      "An act towards commission of the offence",
+      "The statutory requirements applicable to attempt"
+    ],
+
+    defenceIssues: [
+      "Whether preparation is being incorrectly treated as attempt",
+      "Whether the prosecution proves the necessary criminal intent",
+      "Whether the alleged act crossed the legal threshold from preparation to attempt"
+    ],
+
+    crossExaminationIssues: [
+      "Exact act allegedly constituting attempt",
+      "Point at which the alleged attempt commenced",
+      "Evidence of intention",
+      "Distinction between preparation and attempt"
+    ],
+
+    legacyMapping: [
+      {
+        act: "IPC",
+        section: "511",
+        source: "user-supplied"
+      }
+    ],
+
+    tags: [
+      "attempt",
+      "preparation",
+      "IPC 511",
+      "BNS 62"
+    ],
+
+    sources: [
+      "official-statute",
+      "user-supplied"
+    ]
+  },
+
+  {
+    act: "BNS",
+    section: "318(4)",
+    title: "Cheating and dishonestly inducing delivery of property",
+    category: "Offences Against Property",
+
+    ingredients: [
+      "Cheating",
+      "Dishonest or fraudulent inducement",
+      "Delivery of property or the legally relevant consequence contemplated by the provision"
+    ],
+
+    defenceIssues: [
+      "Whether dishonest intention existed at the inception",
+      "Whether the transaction is merely civil in character",
+      "Whether inducement is proved through admissible evidence",
+      "Whether the accused is directly connected with the alleged transaction"
+    ],
+
+    digitalEvidenceIssues: [
+      "Bank transaction records",
+      "Electronic communications",
+      "Device evidence",
+      "Transaction trail",
+      "Authentication and integrity of electronic records"
+    ],
+
+    crossExaminationIssues: [
+      "Original representation allegedly made by the accused",
+      "Date and manner of alleged inducement",
+      "Evidence of dishonest intention at inception",
+      "Money trail",
+      "Identity and attribution of the person controlling the relevant account or device"
+    ],
+
+    legacyMapping: [
+      {
+        act: "IPC",
+        section: "420",
+        source: "user-supplied"
+      }
+    ],
+
+    tags: [
+      "cheating",
+      "dishonest inducement",
+      "property",
+      "cyber fraud",
+      "IPC 420",
+      "BNS 318(4)"
+    ],
+
+    sources: [
+      "official-statute",
+      "user-supplied",
+      "evidence"
+    ]
+  },
+
+  {
+    act: "BNS",
+    section: "316(2)",
+    title: "Criminal breach of trust",
+    category: "Offences Against Property",
+
+    ingredients: [
+      "Entrustment or legally relevant dominion over property",
+      "Dishonest misappropriation or conversion",
+      "Use or disposal contrary to the applicable legal requirement or contract"
+    ],
+
+    defenceIssues: [
+      "Whether entrustment is proved",
+      "Whether dominion over the property is established",
+      "Whether dishonest conversion is established",
+      "Whether the evidence shows a criminal breach rather than a civil dispute"
+    ],
+
+    legacyMapping: [
+      {
+        act: "IPC",
+        section: "406",
+        source: "user-supplied"
+      }
+    ],
+
+    tags: [
+      "criminal breach of trust",
+      "entrustment",
+      "IPC 406",
+      "BNS 316(2)"
+    ],
+
+    sources: [
+      "official-statute",
+      "user-supplied"
+    ]
+  },
+
+  {
+    act: "BNS",
+    section: "319(2)",
+    title: "Cheating by personation",
+    category: "Offences Against Property",
+
+    ingredients: [
+      "Personation",
+      "Cheating",
+      "Connection between the personation and the alleged cheating"
+    ],
+
+    defenceIssues: [
+      "Identity of the alleged personator",
+      "Proof connecting the accused with the impersonated identity",
+      "Reliability and attribution of electronic identity evidence"
+    ],
+
+    digitalEvidenceIssues: [
+      "Mobile number",
+      "Device identifiers",
+      "IP logs",
+      "Account credentials",
+      "Platform records",
+      "Electronic communications"
+    ],
+
+    legacyMapping: [
+      {
+        act: "IPC",
+        section: "419",
+        source: "user-supplied"
+      }
+    ],
+
+    tags: [
+      "personation",
+      "online impersonation",
+      "IPC 419",
+      "BNS 319(2)"
+    ],
+
+    sources: [
+      "official-statute",
+      "user-supplied",
+      "evidence"
+    ]
+  },
+
+  {
+    act: "BNS",
+    section: "336(3)",
+    title: "Forgery",
+    category: "Forgery and False Documents",
+
+    ingredients: [
+      "Making or creating the legally relevant false document or electronic record",
+      "Required fraudulent or dishonest intention",
+      "The statutory circumstances constituting forgery"
+    ],
+
+    defenceIssues: [
+      "Who actually created the alleged document or electronic record",
+      "Whether authorship is established",
+      "Whether the necessary intention is proved",
+      "Whether the electronic record has been properly attributed to the accused"
+    ],
+
+    digitalEvidenceIssues: [
+      "Electronic document",
+      "Metadata",
+      "Device source",
+      "Creation history",
+      "Hash/integrity issues",
+      "Attribution"
+    ],
+
+    legacyMapping: [
+      {
+        act: "IPC",
+        section: "467",
+        source: "user-supplied"
+      }
+    ],
+
+    tags: [
+      "forgery",
+      "electronic document",
+      "IPC 467",
+      "BNS 336(3)"
+    ],
+
+    sources: [
+      "official-statute",
+      "user-supplied",
+      "evidence"
+    ]
+  },
+
+  {
+    act: "BNS",
+    section: "336(4)",
+    title: "Forgery for purpose of cheating",
+    category: "Forgery and False Documents",
+
+    ingredients: [
+      "Forgery",
+      "Purpose or intended use connected with cheating",
+      "Required mens rea under the statutory provision"
+    ],
+
+    defenceIssues: [
+      "Whether forgery itself is proved",
+      "Whether the alleged purpose of cheating is proved",
+      "Whether the accused authored or controlled the disputed document"
+    ],
+
+    legacyMapping: [
+      {
+        act: "IPC",
+        section: "468",
+        source: "user-supplied"
+      }
+    ],
+
+    tags: [
+      "forgery",
+      "cheating",
+      "IPC 468",
+      "BNS 336(4)"
+    ],
+
+    sources: [
+      "official-statute",
+      "user-supplied"
+    ]
+  },
+
+  {
+    act: "BNS",
+    section: "340(2)",
+    title: "Using forged document or electronic record",
+    category: "Forgery and False Documents",
+
+    ingredients: [
+      "Use of the disputed document or electronic record",
+      "Knowledge or reason to believe that it is forged",
+      "Use in the manner contemplated by the statutory provision"
+    ],
+
+    defenceIssues: [
+      "Whether the accused actually used the document",
+      "Whether knowledge of forgery is established",
+      "Whether the electronic record is properly attributed to the accused"
+    ],
+
+    digitalEvidenceIssues: [
+      "Source of electronic record",
+      "Device attribution",
+      "Account attribution",
+      "Metadata",
+      "Integrity",
+      "Chain of custody"
+    ],
+
+    legacyMapping: [
+      {
+        act: "IPC",
+        section: "471",
+        source: "user-supplied"
+      }
+    ],
+
+    tags: [
+      "forged document",
+      "electronic record",
+      "IPC 471",
+      "BNS 340(2)"
+    ],
+
+    sources: [
+      "official-statute",
+      "user-supplied",
+      "evidence"
+    ]
+  }
+];
+
+/* =========================================================
+   BNSS — PROCEDURAL RESEARCH FOUNDATION
+   ========================================================= */
+
+export const bnssDeepResearch: DeepLegalResearch[] = [
+  {
+    act: "BNSS",
+    section: "35",
+    title: "When police may arrest without warrant",
+    category: "Arrest",
+
+    proceduralRequirements: [
+      "Statutory conditions governing arrest without warrant",
+      "Compliance with safeguards applicable to arrest",
+      "Documentation of the grounds and circumstances of arrest"
+    ],
+
+    defenceIssues: [
+      "Whether statutory conditions for arrest existed",
+      "Whether arrest was necessary and legally justified",
+      "Whether arrest safeguards were followed",
+      "Whether the arrest documentation accurately records the circumstances"
+    ],
+
+    tags: [
+      "arrest",
+      "police power",
+      "arrest safeguards"
+    ],
+
+    sources: [
+      "official-statute",
+      "procedural"
+    ]
+  },
+
+  {
+    act: "BNSS",
+    section: "36",
+    title: "Procedure of arrest and duties of officer making arrest",
+    category: "Arrest",
+
+    proceduralRequirements: [
+      "Identification and duties of the arresting officer",
+      "Compliance with statutory arrest procedure",
+      "Documentation and communication of arrest-related information"
+    ],
+
+    defenceIssues: [
+      "Defects in arrest documentation",
+      "Non-compliance with statutory safeguards",
+      "Failure to record relevant circumstances"
+    ],
+
+    tags: [
+      "arrest",
+      "procedure",
+      "police duty"
+    ],
+
+    sources: [
+      "official-statute",
+      "procedural"
+    ]
+  },
+
+  {
+    act: "BNSS",
+    section: "47",
+    title: "Person arrested to be informed of grounds of arrest and right to bail",
+    category: "Arrest",
+
+    proceduralRequirements: [
+      "Communication of grounds of arrest",
+      "Communication of applicable bail entitlement where required",
+      "Proof/documentation of compliance"
+    ],
+
+    defenceIssues: [
+      "Whether grounds of arrest were actually communicated",
+      "When the communication was made",
+      "Whether the accused understood the grounds",
+      "Whether documentary proof of compliance exists"
+    ],
+
+    tags: [
+      "grounds of arrest",
+      "bail",
+      "arrest rights"
+    ],
+
+    sources: [
+      "official-statute",
+      "procedural"
+    ]
+  },
+
+  {
+    act: "BNSS",
+    section: "94",
+    title: "Summons to produce document or other thing",
+    category: "Production of Things",
+
+    proceduralRequirements: [
+      "Identification of the document or thing sought",
+      "Compliance with the statutory procedure for requiring production",
+      "Proper documentation of production"
+    ],
+
+    defenceIssues: [
+      "Whether the statutory procedure was followed",
+      "Whether the requested material was properly identified",
+      "Whether production and subsequent handling are documented"
+    ],
+
+    digitalEvidenceIssues: [
+      "Digital devices",
+      "Electronic records",
+      "Data preservation",
+      "Source identification"
+    ],
+
+    tags: [
+      "document",
+      "digital device",
+      "production",
+      "BNSS 94"
+    ],
+
+    sources: [
+      "official-statute",
+      "procedural",
+      "evidence"
+    ]
+  },
+
+  {
+    act: "BNSS",
+    section: "105",
+    title: "Recording of search and seizure through audio-video electronic means",
+    category: "Search & Seizure",
+
+    proceduralRequirements: [
+      "Audio-video recording of the search and seizure process",
+      "Preservation of the recording",
+      "Proper linkage between the recording and the seizure process"
+    ],
+
+    evidenceIssues: [
+      "Existence of the recording",
+      "Completeness of the recording",
+      "Integrity of the recording",
+      "Identification of the persons and articles shown",
+      "Preservation and production of the recording"
+    ],
+
+    digitalEvidenceIssues: [
+      "Audio-video electronic recording",
+      "Electronic preservation",
+      "Integrity",
+      "Metadata",
+      "Chain of custody"
+    ],
+
+    defenceIssues: [
+      "Whether the entire relevant process was recorded",
+      "Whether the recording is complete",
+      "Whether the recording can be authenticated",
+      "Whether the seized material can be reliably connected with the recording"
+    ],
+
+    crossExaminationIssues: [
+      "Who made the recording",
+      "Which device was used",
+      "When recording commenced",
+      "Whether recording continued throughout the relevant process",
+      "Where the original recording was preserved",
+      "Whether the original file and metadata are available"
+    ],
+
+    tags: [
+      "search",
+      "seizure",
+      "audio-video recording",
+      "e-Sakshya",
+      "digital evidence",
+      "BNSS 105"
+    ],
+
+    sources: [
+      "official-statute",
+      "procedural",
+      "evidence"
+    ]
+  },
+
+  {
+    act: "BNSS",
+    section: "106",
+    title: "Power of police officer to seize certain property",
+    category: "Investigation",
+
+    proceduralRequirements: [
+      "Statutory basis for seizure",
+      "Proper identification of seized property",
+      "Documentation of seizure",
+      "Preservation and production of seized property"
+    ],
+
+    evidenceIssues: [
+      "Identity of seized property",
+      "Seizure documentation",
+      "Continuity of possession",
+      "Chain of custody"
+    ],
+
+    defenceIssues: [
+      "Authority for seizure",
+      "Defects in seizure documentation",
+      "Breaks in chain of custody",
+      "Mismatch between seizure memo and material produced before court"
+    ],
+
+    tags: [
+      "seizure",
+      "property",
+      "investigation",
+      "chain of custody"
+    ],
+
+    sources: [
+      "official-statute",
+      "procedural",
+      "evidence"
+    ]
+  },
+
+  {
+    act: "BNSS",
+    section: "173",
+    title: "Information in cognizable cases",
+    category: "FIR",
+
+    proceduralRequirements: [
+      "Recording of information relating to a cognizable offence",
+      "Compliance with statutory requirements for registration and recording",
+      "Preservation of the original information and relevant records"
+    ],
+
+    defenceIssues: [
+      "Contents of the initial information",
+      "Timing of information",
+      "Subsequent improvements or additions",
+      "Territorial and procedural issues",
+      "Consistency between initial information and later versions"
+    ],
+
+    tags: [
+      "FIR",
+      "cognizable offence",
+      "information",
+      "BNSS 173"
+    ],
+
+    sources: [
+      "official-statute",
+      "procedural"
+    ]
+  },
+
+  {
+    act: "BNSS",
+    section: "193",
+    title: "Report of police officer on completion of investigation",
+    category: "Charge-sheet / Investigation",
+
+    proceduralRequirements: [
+      "Completion of investigation",
+      "Preparation and submission of police report",
+      "Disclosure and inclusion of investigation material as required by law"
+    ],
+
+    defenceIssues: [
+      "Completeness of investigation",
+      "Material omissions",
+      "Contradictions between case diary, statements, seizure records and police report",
+      "Failure to investigate exculpatory material"
+    ],
+
+    tags: [
+      "charge-sheet",
+      "police report",
+      "investigation",
+      "BNSS 193"
+    ],
+
+    sources: [
+      "official-statute",
+      "procedural"
+    ]
+  },
+
+  {
+    act: "BNSS",
+    section: "482",
+    title: "Direction for grant of bail to person apprehending arrest",
+    category: "Anticipatory Bail",
+
+    proceduralRequirements: [
+      "Application before the competent court",
+      "Consideration of statutory conditions",
+      "Compliance with conditions imposed by the court"
+    ],
+
+    defenceIssues: [
+      "Nature and gravity of accusation",
+      "Role attributed to accused",
+      "Custodial interrogation requirement",
+      "Possibility of cooperation with investigation",
+      "Risk of misuse of arrest power"
+    ],
+
+    tags: [
+      "anticipatory bail",
+      "pre-arrest protection",
+      "BNSS 482"
+    ],
+
+    sources: [
+      "official-statute",
+      "procedural"
+    ]
+  }
+];
+
+/* =========================================================
+   BSA — EVIDENCE RESEARCH FOUNDATION
+   ========================================================= */
+
+export const bsaDeepResearch: DeepLegalResearch[] = [
+  {
+    act: "BSA",
+    section: "3",
+    title: "Evidence may be given of facts in issue and relevant facts",
+    category: "Basic Evidence Principles",
+
+    evidenceIssues: [
+      "Identification of facts in issue",
+      "Identification of legally relevant facts",
+      "Relationship between facts in issue and relevant facts"
+    ],
+
+    defenceIssues: [
+      "Whether the evidence actually relates to a fact in issue",
+      "Whether irrelevant material is being relied upon",
+      "Whether the prosecution has established the necessary factual foundation"
+    ],
+
+    tags: [
+      "evidence",
+      "facts in issue",
+      "relevance"
+    ],
+
+    sources: [
+      "official-statute",
+      "evidence"
+    ]
+  },
+
+  {
+    act: "BSA",
+    section: "4",
+    title: "Relevancy of facts forming part of same transaction",
+    category: "Relevancy",
+
+    evidenceIssues: [
+      "Whether the fact forms part of the same transaction",
+      "Temporal and contextual connection",
+      "Connection with the fact in issue"
+    ],
+
+    defenceIssues: [
+      "Whether the prosecution is artificially combining disconnected events",
+      "Whether the alleged transaction has sufficient factual connection"
+    ],
+
+    tags: [
+      "relevancy",
+      "same transaction",
+      "evidence"
+    ],
+
+    sources: [
+      "official-statute",
+      "evidence"
+    ]
+  },
+
+  {
+    act: "BSA",
+    section: "55",
+    title: "Proof of contents of documents",
+    category: "Documentary Evidence",
+
+    evidenceIssues: [
+      "Proof of contents",
+      "Documentary evidence",
+      "Authentication where required"
+    ],
+
+    defenceIssues: [
+      "Whether the contents have been legally proved",
+      "Whether the document relied upon is the proper evidentiary source",
+      "Whether the prosecution has established authenticity"
+    ],
+
+    tags: [
+      "documents",
+      "proof",
+      "contents"
+    ],
+
+    sources: [
+      "official-statute",
+      "evidence"
+    ]
+  },
+
+  {
+    act: "BSA",
+    section: "56",
+    title: "Primary evidence",
+    category: "Documentary Evidence",
+
+    evidenceIssues: [
+      "Primary evidence",
+      "Original document or legally recognized equivalent",
+      "Proof and production requirements"
+    ],
+
+    tags: [
+      "primary evidence",
+      "document"
+    ],
+
+    sources: [
+      "official-statute",
+      "evidence"
+    ]
+  },
+
+  {
+    act: "BSA",
+    section: "57",
+    title: "Secondary evidence",
+    category: "Documentary Evidence",
+
+    evidenceIssues: [
+      "Secondary evidence",
+      "Conditions permitting secondary evidence",
+      "Proof of the relevant document"
+    ],
+
+    defenceIssues: [
+      "Whether the statutory conditions for secondary evidence exist",
+      "Whether the original document is available",
+      "Whether the secondary material is reliable"
+    ],
+
+    tags: [
+      "secondary evidence",
+      "document"
+    ],
+
+    sources: [
+      "official-statute",
+      "evidence"
+    ]
+  },
+
+  {
+    act: "BSA",
+    section: "61",
+    title: "Electronic or digital record",
+    category: "Electronic Evidence",
+
+    evidenceIssues: [
+      "Electronic or digital record",
+      "Nature and source of the electronic material",
+      "Connection between the record and the fact in issue"
+    ],
+
+    digitalEvidenceIssues: [
+      "Electronic records",
+      "Digital records",
+      "Source identification",
+      "Integrity",
+      "Attribution"
+    ],
+
+    tags: [
+      "electronic evidence",
+      "digital record"
+    ],
+
+    sources: [
+      "official-statute",
+      "evidence"
+    ]
+  },
+
+  {
+    act: "BSA",
+    section: "62",
+    title: "Special provisions as to evidence relating to electronic record",
+    category: "Electronic Evidence",
+
+    evidenceIssues: [
+      "Special evidentiary treatment of electronic records",
+      "Statutory conditions applicable to electronic evidence"
+    ],
+
+    digitalEvidenceIssues: [
+      "Electronic record",
+      "Digital evidence",
+      "Authentication",
+      "Integrity",
+      "Source"
+    ],
+
+    defenceIssues: [
+      "Whether statutory requirements have been satisfied",
+      "Whether the electronic record is properly attributed",
+      "Whether the integrity of the record has been established"
+    ],
+
+    tags: [
+      "electronic record",
+      "digital evidence",
+      "BSA 62"
+    ],
+
+    sources: [
+      "official-statute",
+      "evidence"
+    ]
+  },
+
+  {
+    act: "BSA",
+    section: "63",
+    title: "Admissibility of electronic records",
+    category: "Electronic Evidence",
+
+    evidenceIssues: [
+      "Admissibility of electronic records",
+      "Statutory requirements for electronic evidence",
+      "Certificate and supporting requirements where applicable"
+    ],
+
+    digitalEvidenceIssues: [
+      "Electronic record",
+      "Certificate",
+      "Device",
+      "Source",
+      "Integrity",
+      "Digital evidence"
+    ],
+
+    defenceIssues: [
+      "Whether the statutory requirements for admissibility are satisfied",
+      "Whether the certificate is legally sufficient",
+      "Whether the person issuing the certificate is competent and connected with the relevant system",
+      "Whether the electronic record produced corresponds with the original source"
+    ],
+
+    crossExaminationIssues: [
+      "Source of the electronic record",
+      "Device or system from which it was obtained",
+      "Method of extraction",
+      "Preservation of original data",
+      "Integrity of the electronic record",
+      "Certificate preparation",
+      "Person who generated or verified the certificate"
+    ],
+
+    tags: [
+      "electronic evidence",
+      "admissibility",
+      "certificate",
+      "digital evidence",
+      "BSA 63"
+    ],
+
+    sources: [
+      "official-statute",
+      "evidence"
+    ]
+  },
+
+  {
+    act: "BSA",
+    section: "104",
+    title: "Burden of proof",
+    category: "Burden of Proof",
+
+    evidenceIssues: [
+      "Burden of proof",
+      "Party bearing the burden",
+      "Proof of facts asserted"
+    ],
+
+    defenceIssues: [
+      "Whether the prosecution has discharged its primary burden",
+      "Whether an impermissible burden is being shifted to the accused"
+    ],
+
+    tags: [
+      "burden",
+      "proof",
+      "criminal trial"
+    ],
+
+    sources: [
+      "official-statute",
+      "evidence"
+    ]
+  },
+
+  {
+    act: "BSA",
+    section: "142",
+    title: "Examination of witnesses",
+    category: "Witnesses",
+
+    evidenceIssues: [
+      "Examination of witnesses",
+      "Testing testimonial evidence",
+      "Questions relevant to credibility and proof"
+    ],
+
+    crossExaminationIssues: [
+      "Material contradictions",
+      "Omissions",
+      "Improvements",
+      "Bias",
+      "Opportunity to observe",
+      "Source of knowledge",
+      "Consistency with documentary and electronic evidence"
+    ],
+
+    tags: [
+      "witness",
+      "examination",
+      "cross-examination"
+    ],
+
+    sources: [
+      "official-statute",
+      "evidence"
+    ]
+  },
+
+  {
+    act: "BSA",
+    section: "143",
+    title: "Order of production and examination of witnesses",
+    category: "Witnesses",
+
+    evidenceIssues: [
+      "Order of production of witnesses",
+      "Examination sequence",
+      "Procedural conduct of witness examination"
+    ],
+
+    tags: [
+      "witnesses",
+      "examination"
+    ],
+
+    sources: [
+      "official-statute",
+      "evidence"
+    ]
+  }
+];
+
+/* =========================================================
+   MASTER DEEP RESEARCH INDEX
+   ========================================================= */
+
+export const deepLegalResearchData: DeepLegalResearch[] = [
+  ...bnsDeepResearch,
+  ...bnssDeepResearch,
+  ...bsaDeepResearch
+];
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+export function searchDeepLegalResearch(
+  query: string
+): DeepLegalResearch[] {
+  const q = query.trim().toLowerCase();
+
+  if (!q) {
+    return deepLegalResearchData;
+  }
+
+  return deepLegalResearchData.filter((item) => {
+    const searchable = [
+      item.act,
+      item.section,
+      item.title,
+      item.chapter,
+      item.category,
+      item.provision,
+      ...(item.ingredients ?? []),
+      item.punishment,
+      ...(item.proceduralRequirements ?? []),
+      ...(item.evidenceIssues ?? []),
+      ...(item.digitalEvidenceIssues ?? []),
+      ...(item.defenceIssues ?? []),
+      ...(item.crossExaminationIssues ?? []),
+      ...(item.bailIssues ?? []),
+      ...(item.caseLaw ?? []),
+      ...(item.tags ?? []),
+      ...(item.legacyMapping ?? []).map(
+        (mapping) =>
+          `${mapping.act} ${mapping.section} ${mapping.source}`
+      )
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+    return searchable.includes(q);
+  });
+}

@@ -1,0 +1,15 @@
+export default function Home() {
+  return (
+    <main className="min-h-screen bg-white flex items-center justify-center">
+      <div className="text-center p-8">
+        <h1 className="text-4xl font-bold text-black mb-4">
+          Advocate Shaikul Khan
+        </h1>
+
+        <p className="text-gray-600 text-lg">
+          Cyber Crime • Bank Freeze • High Court Matters
+        </p>
+      </div>
+    </main>
+  );
+}

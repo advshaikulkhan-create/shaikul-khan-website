@@ -1,0 +1,60 @@
+
+  {
+    act: "BNS",
+    section: "318(4)",
+    title: "Cheating and dishonestly inducing delivery of property",
+    category: "Offences Against Property",
+
+    ingredients: [
+      "Cheating",
+      "Dishonest or fraudulent inducement",
+      "Delivery of property or the legally relevant consequence contemplated by the provision"
+    ],
+
+    defenceIssues: [
+      "Whether dishonest intention existed at the inception",
+      "Whether the transaction is merely civil in character",
+      "Whether inducement is proved through admissible evidence",
+      "Whether the accused is directly connected with the alleged transaction"
+    ],
+
+    digitalEvidenceIssues: [
+      "Bank transaction records",
+      "Electronic communications",
+      "Device evidence",
+      "Transaction trail",
+      "Authentication and integrity of electronic records"
+    ],
+
+    crossExaminationIssues: [
+      "Original representation allegedly made by the accused",
+      "Date and manner of alleged inducement",
+      "Evidence of dishonest intention at inception",
+      "Money trail",
+      "Identity and attribution of the person controlling the relevant account or device"
+    ],
+
+    legacyMapping: [
+      {
+        act: "IPC",
+        section: "420",
+        source: "user-supplied"
+      }
+    ],
+
+    tags: [
+      "cheating",
+      "dishonest inducement",
+      "property",
+      "cyber fraud",
+      "IPC 420",
+      "BNS 318(4)"
+    ],
+
+    sources: [
+      "official-statute",
+      "user-supplied",
+      "evidence"
+    ]
+  },
+
