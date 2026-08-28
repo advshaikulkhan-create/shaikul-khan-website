@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://shaikul-khan-website.vercel.app"
   ),
 
   title: {
@@ -49,27 +49,27 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       "@graph": [
         {
           "@type": "Person",
-          "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/#person`,
+          "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "https://shaikul-khan-website.vercel.app"}/#person`,
           "name": "Advocate Shaikul Khan",
           "jobTitle": "Advocate",
           "description": "Criminal defence and cyber crime advocate."
         },
         {
           "@type": "WebSite",
-          "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/#website`,
+          "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "https://shaikul-khan-website.vercel.app"}/#website`,
           "name": "Advocate Shaikul Khan",
-          "url": process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+          "url": process.env.NEXT_PUBLIC_SITE_URL || "https://shaikul-khan-website.vercel.app",
           "publisher": {
-            "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/#person`
+            "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "https://shaikul-khan-website.vercel.app"}/#person`
           }
         },
         {
           "@type": "WebPage",
-          "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/#webpage`,
-          "url": process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+          "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "https://shaikul-khan-website.vercel.app"}/#webpage`,
+          "url": process.env.NEXT_PUBLIC_SITE_URL || "https://shaikul-khan-website.vercel.app",
           "name": "Advocate Shaikul Khan | Rajasthan High Court",
           "isPartOf": {
-            "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/#website`
+            "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "https://shaikul-khan-website.vercel.app"}/#website`
           }
         }
       ]
