@@ -55,6 +55,24 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           "description": "Criminal defence and cyber crime advocate."
         },
         {
+          "@type": "Attorney",
+          "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "https://shaikul-khan-website.vercel.app"}/#attorney`,
+          "name": "Advocate Shaikul Khan",
+          "image": `${process.env.NEXT_PUBLIC_SITE_URL || "https://shaikul-khan-website.vercel.app"}/brand/Premium-logo.png`,
+          "telephone": "+918955002298",
+          "email": "advshaikulkhan@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Haji Deenu Niwas, Ubhaka, Pahadi",
+            "addressLocality": "Deeg",
+            "addressRegion": "Rajasthan",
+            "postalCode": "321204",
+            "addressCountry": "IN"
+          },
+          "areaServed": ["Deeg", "Bharatpur", "Jaipur", "Rajasthan"],
+          "url": process.env.NEXT_PUBLIC_SITE_URL || "https://shaikul-khan-website.vercel.app"
+        },
+        {
           "@type": "WebSite",
           "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "https://shaikul-khan-website.vercel.app"}/#website`,
           "name": "Advocate Shaikul Khan",

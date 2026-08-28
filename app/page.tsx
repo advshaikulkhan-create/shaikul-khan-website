@@ -18,8 +18,41 @@ export const metadata: Metadata = {
   },
 };
 
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What documents are needed for a bank account unfreeze request?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Relevant documents may include the account holder's ID/KYC, bank freeze or lien details, account statement, disputed transaction details, and documents explaining the source or legitimacy of the funds."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a 1930 Cyber Portal debit-freeze account be reopened?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. An NCRP/CFCFRMS-related debit freeze or lien can be removed or restricted, subject to verification and the applicable legal process."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a bank permanently freeze a bank account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A cybercrime-related debit freeze is not automatically permanent. Its continuation, restriction or removal depends on the legal basis of the freeze."
+      }
+    }
+  ]
+};
+
 export default function Home() {
   return (
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     <main className="min-h-screen bg-[#F8FAFC] text-[#0F172A]">
       {/* Hero */}
       <section className="mx-auto max-w-7xl px-5 py-10 sm:py-14 lg:py-20">
