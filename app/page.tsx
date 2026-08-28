@@ -52,6 +52,7 @@ const faqSchema = {
 
 export default function Home() {
   return (
+    <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     <main className="min-h-screen bg-[#F8FAFC] text-[#0F172A]">
       {/* Hero */}
@@ -337,5 +338,6 @@ export default function Home() {
         </div>
       </footer>
     </main>
+    </>
   );
 }
