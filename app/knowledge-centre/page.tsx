@@ -109,11 +109,11 @@ export default function KnowledgeCentrePage() {
                   </p>
                 </div>
 
-                <div className="grid gap-5 sm:grid-cols-2">
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5">
                   {section.items.map((item) => (
-<Link href={`/knowledge-centre/${item.code.toLowerCase()}`}>
+<Link href={`/knowledge-centre/${item.slug}`}>
   <article
-    key={item.code}
+    key={item.slug}
     className="group rounded-[28px] border ..."
   >
                       <div className="flex items-start justify-between gap-5">
