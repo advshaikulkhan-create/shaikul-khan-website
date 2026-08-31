@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { sections } from "../../../data/acts/bns";
 
 type Props = {
   params: Promise<{
@@ -8,27 +7,132 @@ type Props = {
   }>;
 };
 
+// Presentation metadata for each act. This is UI copy, not legal content —
+// safe to keep in code rather than in the data files.
+const ACT_META: Record<string, { title: string; eyebrow: string; description: string }> = {
+  bns: {
+    title: "Bharatiya Nyaya Sanhita, 2023",
+    eyebrow: "BNS",
+    description:
+      "The principal substantive criminal law statute of India, in force from 1 July 2024 — offences, ingredients and punishments, section by section.",
+  },
+  bnss: {
+    title: "Bharatiya Nagarik Suraksha Sanhita, 2023",
+    eyebrow: "BNSS",
+    description: "The procedural framework governing criminal investigation, inquiry, trial and related proceedings.",
+  },
+  bsa: {
+    title: "Bharatiya Sakshya Adhiniyam, 2023",
+    eyebrow: "BSA",
+    description: "The legal framework governing evidence, including electronic and digital evidence.",
+  },
+  ipc: {
+    title: "Indian Penal Code, 1860",
+    eyebrow: "IPC",
+    description: "Reference material for offences and criminal law under the former Indian Penal Code.",
+  },
+  crpc: {
+    title: "Code of Criminal Procedure, 1973",
+    eyebrow: "CrPC",
+    description: "Reference material for criminal procedure under the former Code of Criminal Procedure.",
+  },
+  iea: {
+    title: "Indian Evidence Act, 1872",
+    eyebrow: "IEA",
+    description: "Reference material for evidentiary law under the Indian Evidence Act.",
+  },
+  pocso: {
+    title: "Protection of Children from Sexual Offences Act",
+    eyebrow: "POCSO",
+    description: "Legal framework relating to offences against children and child protection.",
+  },
+  jj: {
+    title: "Juvenile Justice Act",
+    eyebrow: "JJ Act",
+    description: "Legal framework relating to children in conflict with law and child care and protection.",
+  },
+  ndps: {
+    title: "Narcotic Drugs and Psychotropic Substances Act",
+    eyebrow: "NDPS",
+    description: "Legal framework governing narcotic drugs and psychotropic substances offences.",
+  },
+  mmdr: {
+    title: "Mines and Minerals (Development and Regulation) Act",
+    eyebrow: "MMDR",
+    description: "Legal framework governing mining and mineral development, including illegal mining offences.",
+  },
+  rba: {
+    title: "Rajasthan Excise Act",
+    eyebrow: "Excise",
+    description: "State excise law governing liquor and excise violations in Rajasthan.",
+  },
+  arms: {
+    title: "Arms Act",
+    eyebrow: "Arms Act",
+    description: "Legal framework governing possession, licensing and offences relating to arms and ammunition.",
+  },
+};
+
+// Maps a slug to its data-file loader. Add a new act by adding one line here
+// once its data file exists in data/acts/.
+const ACT_LOADERS: Record<string, () => Promise<any>> = {
+  bns: () => import("../../../data/acts/bns"),
+  bnss: () => import("../../../data/acts/bnss"),
+  bsa: () => import("../../../data/acts/bsa"),
+  ipc: () => import("../../../data/acts/ipc"),
+  crpc: () => import("../../../data/acts/crpc"),
+  iea: () => import("../../../data/acts/iea"),
+  pocso: () => import("../../../data/acts/pocso"),
+  jj: () => import("../../../data/acts/jj"),
+  ndps: () => import("../../../data/acts/ndps"),
+  mmdr: () => import("../../../data/acts/mmdr"),
+  rba: () => import("../../../data/acts/rba"),
+  arms: () => import("../../../data/acts/arms"),
+};
+
+type BNSSection = {
+  section: string;
+  title: string;
+  ipcMapping?: string;
+  ingredients?: string[];
+  punishment?: string;
+  notes?: string;
+};
+
+type BNSChapter = {
+  chapterNum: string;
+  title: string;
+  sections: BNSSection[];
+};
+
 export default async function KnowledgeCentreTopic({ params }: Props) {
-  const { actSlug: slug } = await params;
+  const { actSlug } = await params;
+  const slug = (actSlug || "").toLowerCase().trim();
 
-  const currentSlug = (slug || "").toLowerCase().trim();
+  const meta = ACT_META[slug];
+  const loader = ACT_LOADERS[slug];
 
-  const section = sections.find((section) =>
-    section.items.some((item) => item.slug === currentSlug)
-  );
-
-  const item = section?.items.find(
-    (item) => item.slug === currentSlug
-  );
-
-  if (!section || !item) {
+  if (!meta || !loader) {
     notFound();
   }
+
+  let mod: any = null;
+  try {
+    mod = await loader();
+  } catch {
+    mod = null;
+  }
+
+  const chapters: BNSChapter[] | undefined = mod?.bnsChapters ?? mod?.default;
+  const hasRichContent = Array.isArray(chapters) && chapters.length > 0;
+
+  const totalSections = hasRichContent
+    ? chapters!.reduce((sum, ch) => sum + (ch.sections?.length || 0), 0)
+    : 0;
 
   return (
     <main className="min-h-screen bg-[#F5F5F7] px-5 py-12 font-sans text-[#0F172A] sm:px-8">
       <div className="mx-auto max-w-5xl">
-
         <Link
           href="/knowledge-centre"
           className="inline-flex items-center gap-2 text-sm font-semibold text-[#0B8A00] transition-opacity hover:opacity-75"
@@ -36,242 +140,125 @@ export default async function KnowledgeCentreTopic({ params }: Props) {
           ← Back to Knowledge Centre
         </Link>
 
+        {/* Hero */}
         <section className="mt-8 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm sm:p-12">
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0B8A00]">
-            {section.title}
+            {meta.eyebrow}
           </p>
-
           <h1 className="mt-4 text-4xl font-bold leading-tight tracking-tight text-slate-950 sm:text-6xl">
-            {item.title}
+            {meta.title}
           </h1>
-
           <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600 sm:text-xl">
-            {item.description}
+            {meta.description}
           </p>
+          {hasRichContent && (
+            <p className="mt-6 text-sm font-semibold text-slate-500">
+              {totalSections} sections indexed across {chapters!.length} chapters
+            </p>
+          )}
         </section>
 
-        {item.overview && (
-          <section className="mt-8 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#0B8A00]">
-              Overview
-            </p>
-
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">
-              Legal Overview
-            </h2>
-
-            <p className="mt-6 max-w-4xl text-base leading-8 text-slate-600 sm:text-lg">
-              {item.overview}
-            </p>
-          </section>
-        )}
-
-        {item.legalFramework && item.legalFramework.length > 0 && (
-          <section className="mt-8 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#0B8A00]">
-              Legal Framework
-            </p>
-
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">
-              Applicable Legal Framework
-            </h2>
-
-            <div className="mt-8 space-y-4">
-              {item.legalFramework.map((point, index) => (
-                <div
-                  key={index}
-                  className="flex gap-4 rounded-2xl border border-slate-100 bg-slate-50 p-5"
-                >
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#0B8A00]/10 text-sm font-bold text-[#0B8A00]">
-                    {index + 1}
-                  </span>
-
-                  <p className="leading-7 text-slate-700">
-                    {point}
+        {/* Content */}
+        {hasRichContent ? (
+          <div className="mt-8 space-y-8">
+            {chapters!.map((chapter) => (
+              <section
+                key={chapter.chapterNum}
+                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10"
+              >
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0B8A00]">
+                  Chapter {chapter.chapterNum}
+                </p>
+                <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
+                  {chapter.title}
+                </h2>
+                {chapter.sections.length > 0 && (
+                  <p className="mt-2 text-sm font-semibold text-slate-500">
+                    {meta.eyebrow} Section {chapter.sections[0].section} to Section{" "}
+                    {chapter.sections[chapter.sections.length - 1].section} — {chapter.sections.length}{" "}
+                    {chapter.sections.length === 1 ? "section" : "sections"} in this chapter
                   </p>
+                )}
+
+                <div className="mt-6 space-y-3">
+                  {chapter.sections.map((sec) => (
+                    <details
+                      key={sec.section}
+                      className="group rounded-2xl border border-slate-200 bg-[#FAFAFA] open:bg-white open:shadow-sm"
+                    >
+                      <summary className="flex cursor-pointer list-none items-start justify-between gap-4 px-5 py-4">
+                        <span className="flex items-baseline gap-3">
+                          <span className="shrink-0 rounded-full bg-[#0B8A00]/10 px-2.5 py-0.5 text-sm font-bold text-[#0B8A00]">
+                            {meta.eyebrow} Section {sec.section}
+                          </span>
+                          <span className="font-semibold text-slate-900">{sec.title}</span>
+                        </span>
+                        <span className="mt-1 shrink-0 text-slate-400 transition-transform group-open:rotate-45">
+                          +
+                        </span>
+                      </summary>
+
+                      <div className="space-y-4 border-t border-slate-200 px-5 py-5">
+                        {sec.ingredients && sec.ingredients.length > 0 && (
+                          <div>
+                            <p className="text-xs font-bold uppercase tracking-wide text-slate-400">
+                              Ingredients
+                            </p>
+                            <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm leading-6 text-slate-700">
+                              {sec.ingredients.map((ing, i) => (
+                                <li key={i}>{ing}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+
+                        {sec.punishment && (
+                          <div>
+                            <p className="text-xs font-bold uppercase tracking-wide text-slate-400">
+                              Punishment
+                            </p>
+                            <p className="mt-1 text-sm font-medium text-slate-800">{sec.punishment}</p>
+                          </div>
+                        )}
+
+                        {sec.notes && (
+                          <div className="rounded-xl bg-amber-50 px-4 py-3">
+                            <p className="text-xs font-bold uppercase tracking-wide text-amber-700">
+                              Practice note
+                            </p>
+                            <p className="mt-1 text-sm leading-6 text-amber-900">{sec.notes}</p>
+                          </div>
+                        )}
+                      </div>
+                    </details>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {item.procedure && item.procedure.length > 0 && (
-          <section className="mt-8 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#0B8A00]">
-              Procedure
+              </section>
+            ))}
+          </div>
+        ) : (
+          <section className="mt-8 rounded-3xl border border-slate-200 bg-white p-10 text-center shadow-sm sm:p-16">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0B8A00]">
+              Coming soon
             </p>
-
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">
-              Procedural Roadmap
+            <h2 className="mt-3 text-2xl font-bold text-slate-950">
+              Section-wise content for {meta.title} is being added
             </h2>
-
-            <div className="mt-8 space-y-5">
-              {item.procedure.map((step, index) => (
-                <div
-                  key={index}
-                  className="flex gap-5 border-l-2 border-[#0B8A00]/30 pl-5"
-                >
-                  <span className="shrink-0 text-sm font-bold text-[#0B8A00]">
-                    STEP {String(index + 1).padStart(2, "0")}
-                  </span>
-
-                  <p className="leading-7 text-slate-700">
-                    {step}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {item.keyIssues && item.keyIssues.length > 0 && (
-          <section className="mt-8 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#0B8A00]">
-              Key Legal Issues
+            <p className="mx-auto mt-3 max-w-xl text-slate-600">
+              This act's detailed, section-wise reference material is in progress and will appear
+              here shortly.
             </p>
-
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">
-              Questions Requiring Legal Examination
-            </h2>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {item.keyIssues.map((issue, index) => (
-                <div
-                  key={index}
-                  className="rounded-2xl border border-slate-200 p-6 transition-shadow hover:shadow-md"
-                >
-                  <p className="text-sm font-bold text-[#0B8A00]">
-                    ISSUE {index + 1}
-                  </p>
-
-                  <p className="mt-3 leading-7 text-slate-700">
-                    {issue}
-                  </p>
-                </div>
-              ))}
-            </div>
           </section>
         )}
 
-        {item.evidence && item.evidence.length > 0 && (
-          <section className="mt-8 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#0B8A00]">
-              Evidence
-            </p>
-
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">
-              Evidence and Supporting Records
-            </h2>
-
-            <div className="mt-8 grid gap-3">
-              {item.evidence.map((record, index) => (
-                <div
-                  key={index}
-                  className="flex items-start gap-4 rounded-2xl bg-slate-50 p-5"
-                >
-                  <span className="mt-1 text-[#0B8A00]">✓</span>
-
-                  <p className="leading-7 text-slate-700">
-                    {record}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {item.judgments && item.judgments.length > 0 && (
-          <section className="mt-8 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#0B8A00]">
-              Judicial Research
-            </p>
-
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">
-              Judicial Precedents
-            </h2>
-
-            <div className="mt-8 space-y-4">
-              {item.judgments.map((judgment, index) => (
-                <div
-                  key={index}
-                  className="rounded-2xl border border-slate-200 p-6"
-                >
-                  <p className="text-xs font-bold uppercase tracking-wider text-[#0B8A00]">
-                    Research Area {index + 1}
-                  </p>
-
-                  <p className="mt-3 leading-7 text-slate-700">
-                    {judgment}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {item.documents && item.documents.length > 0 && (
-          <section className="mt-8 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#0B8A00]">
-              Documents
-            </p>
-
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">
-              Required Documents and Applications
-            </h2>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {item.documents.map((document, index) => (
-                <div
-                  key={index}
-                  className="rounded-2xl border border-slate-200 p-5"
-                >
-                  <p className="text-xs font-bold text-[#0B8A00]">
-                    DOCUMENT {index + 1}
-                  </p>
-
-                  <p className="mt-3 leading-7 text-slate-700">
-                    {document}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {item.relatedTopics && item.relatedTopics.length > 0 && (
-          <section className="mt-8 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#0B8A00]">
-              Related Research
-            </p>
-
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">
-              Related Topics
-            </h2>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              {item.relatedTopics.map((topic, index) => (
-                <span
-                  key={index}
-                  className="rounded-full border border-[#0B8A00]/20 bg-[#0B8A00]/5 px-5 py-3 text-sm font-semibold text-slate-700"
-                >
-                  {topic}
-                </span>
-              ))}
-            </div>
-          </section>
-        )}
-
-        <section className="mt-10 border-t border-slate-200 py-10 text-center">
-          <p className="text-sm font-semibold tracking-wide text-[#0B8A00]">
-            ADVOCATE SHAIKUL KHAN · KNOWLEDGE CENTRE
+        <div className="mt-12 border-t border-slate-200 pt-8 text-center">
+          <p className="text-sm font-semibold text-[#0B8A00]">
+            Advocate Shaikul Khan · Knowledge Centre
           </p>
-
-          <p className="mt-3 text-sm text-slate-500">
-            Structured legal research, procedural analysis and practical
-            legal guidance.
+          <p className="mt-1 text-sm text-slate-500">
+            Structured legal research, procedural analysis and practical legal guidance.
           </p>
-        </section>
-
+        </div>
       </div>
     </main>
   );
