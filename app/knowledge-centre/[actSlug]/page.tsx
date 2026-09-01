@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ActSectionsBrowser from "./ActSectionsBrowser";
 
 type Props = {
   params: Promise<{
@@ -160,82 +161,7 @@ export default async function KnowledgeCentreTopic({ params }: Props) {
 
         {/* Content */}
         {hasRichContent ? (
-          <div className="mt-8 space-y-8">
-            {chapters!.map((chapter) => (
-              <section
-                key={chapter.chapterNum}
-                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10"
-              >
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0B8A00]">
-                  Chapter {chapter.chapterNum}
-                </p>
-                <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
-                  {chapter.title}
-                </h2>
-                {chapter.sections.length > 0 && (
-                  <p className="mt-2 text-sm font-semibold text-slate-500">
-                    {meta.eyebrow} Section {chapter.sections[0].section} to Section{" "}
-                    {chapter.sections[chapter.sections.length - 1].section} — {chapter.sections.length}{" "}
-                    {chapter.sections.length === 1 ? "section" : "sections"} in this chapter
-                  </p>
-                )}
-
-                <div className="mt-6 space-y-3">
-                  {chapter.sections.map((sec) => (
-                    <details
-                      key={sec.section}
-                      className="group rounded-2xl border border-slate-200 bg-[#FAFAFA] open:bg-white open:shadow-sm"
-                    >
-                      <summary className="flex cursor-pointer list-none items-start justify-between gap-4 px-5 py-4">
-                        <span className="flex items-baseline gap-3">
-                          <span className="shrink-0 rounded-full bg-[#0B8A00]/10 px-2.5 py-0.5 text-sm font-bold text-[#0B8A00]">
-                            {meta.eyebrow} Section {sec.section}
-                          </span>
-                          <span className="font-semibold text-slate-900">{sec.title}</span>
-                        </span>
-                        <span className="mt-1 shrink-0 text-slate-400 transition-transform group-open:rotate-45">
-                          +
-                        </span>
-                      </summary>
-
-                      <div className="space-y-4 border-t border-slate-200 px-5 py-5">
-                        {sec.ingredients && sec.ingredients.length > 0 && (
-                          <div>
-                            <p className="text-xs font-bold uppercase tracking-wide text-slate-400">
-                              Ingredients
-                            </p>
-                            <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm leading-6 text-slate-700">
-                              {sec.ingredients.map((ing, i) => (
-                                <li key={i}>{ing}</li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
-
-                        {sec.punishment && (
-                          <div>
-                            <p className="text-xs font-bold uppercase tracking-wide text-slate-400">
-                              Punishment
-                            </p>
-                            <p className="mt-1 text-sm font-medium text-slate-800">{sec.punishment}</p>
-                          </div>
-                        )}
-
-                        {sec.notes && (
-                          <div className="rounded-xl bg-amber-50 px-4 py-3">
-                            <p className="text-xs font-bold uppercase tracking-wide text-amber-700">
-                              Practice note
-                            </p>
-                            <p className="mt-1 text-sm leading-6 text-amber-900">{sec.notes}</p>
-                          </div>
-                        )}
-                      </div>
-                    </details>
-                  ))}
-                </div>
-              </section>
-            ))}
-          </div>
+          <ActSectionsBrowser chapters={chapters!} actEyebrow={meta.eyebrow} />
         ) : (
           <section className="mt-8 rounded-3xl border border-slate-200 bg-white p-10 text-center shadow-sm sm:p-16">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0B8A00]">
