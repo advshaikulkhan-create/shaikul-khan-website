@@ -1,46 +1,45 @@
 import type { MetadataRoute } from "next";
-import { sections } from "./knowledge-centre/data";
-import { deepLegalResearchData } from "@/lib/deepLegalResearch";
+
+const SITE_URL = "https://shaikul-khan-website.vercel.app";
+
+// Known Knowledge Centre act slugs (kept in sync with app/knowledge-centre/[actSlug]/page.tsx)
+const ACT_SLUGS = [
+  "bns",
+  "bnss",
+  "bsa",
+  "ipc",
+  "crpc",
+  "iea",
+  "pocso",
+  "jj",
+  "ndps",
+  "mmdr",
+  "rba",
+  "arms",
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://shaikul-khan-website.vercel.app";
-
-  const staticPages = [
-    "/",
-    "/about",
-    "/ask-ai",
-    "/consultation",
-    "/disclaimer",
-    "/k",
-    "/knowledge-centre",
-    "/practice-areas/cyber-crime",
-    "/privacy-policy",
-    "/team",
+  const staticRoutes: MetadataRoute.Sitemap = [
+    {
+      url: `${SITE_URL}/`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 1,
+    },
+    {
+      url: `${SITE_URL}/knowledge-centre`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
   ];
 
-  const sectionPages = sections.map((section) => ({
-    url: `${baseUrl}/knowledge-centre/${section.id}`,
-    changeFrequency: "monthly" as const,
+  const actRoutes: MetadataRoute.Sitemap = ACT_SLUGS.map((slug) => ({
+    url: `${SITE_URL}/knowledge-centre/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
 
-  const legalResearchPages = deepLegalResearchData.map((item) => ({
-    url: `${baseUrl}/k/${item.act.toLowerCase()}-${item.section
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-|-$/g, "")}`,
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }));
-
-  return [
-    ...staticPages.map((path) => ({
-      url: `${baseUrl}${path}`,
-      changeFrequency: "monthly" as const,
-      priority: path === "/" ? 1 : 0.7,
-    })),
-    ...sectionPages,
-    ...legalResearchPages,
-  ];
+  return [...staticRoutes, ...actRoutes];
 }
