@@ -1,3 +1,4 @@
+import { bnssChapters } from "@/data/acts/bnss";
 export type ActType = "BNS" | "BNSS" | "BSA";
 
 export type LegalResearch = {
