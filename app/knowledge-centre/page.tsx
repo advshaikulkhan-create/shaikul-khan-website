@@ -1,4 +1,5 @@
 import Link from "next/link";
+import GlobalSearch from "./GlobalSearch";
 
 const acts = [
   {
@@ -106,6 +107,8 @@ export default function KnowledgeCentre() {
             special statutes.
           </p>
         </div>
+
+        <GlobalSearch />
 
         <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {acts.map((act) => (
