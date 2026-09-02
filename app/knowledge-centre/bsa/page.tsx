@@ -21,7 +21,7 @@ const ACT_META: Record<string, { title: string; eyebrow: string; description: st
 
 export default function BsaActPage() {
   
-  const slug = 'bsa';
+  const slug: any = "bsa";
   const meta = {
     title: 'Bharatiya Sakshya Adhiniyam, 2023',
     eyebrow: 'BSA',
@@ -58,7 +58,7 @@ export default function BsaActPage() {
               {chapters.length} Chapters
             </span>
             <span className="rounded-full bg-slate-100 px-4 py-2 font-semibold text-slate-700">
-              {slug === "bnss" ? 531 : totalSections} Sections
+              {(slug as any) === "bnss" ? 531 : totalSections} Sections
             </span>
           </div>
         )}
