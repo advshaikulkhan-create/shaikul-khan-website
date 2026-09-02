@@ -2,9 +2,9 @@
 
 import { useState, use } from "react";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import { bnssChapters } from "@/data/acts/bnss";
-import { bnsChapters } from "@/data/acts/bns";
+
+import { bsaChapters } from '@/data/acts/bsa';
+
 
 const ACT_META: Record<string, { title: string; eyebrow: string; description: string }> = {
   bns: {
@@ -19,16 +19,16 @@ const ACT_META: Record<string, { title: string; eyebrow: string; description: st
   },
 };
 
-export default function KnowledgeCentreActPage({ params }: { params: Promise<{ actSlug: string }> }) {
-  const { actSlug } = use(params);
-  const slug = actSlug.toLowerCase().trim();
-  const meta = ACT_META[slug];
+export default function BsaActPage() {
+  
+  const slug = 'bsa';
+  const meta = {
+    title: 'Bharatiya Sakshya Adhiniyam, 2023',
+    eyebrow: 'BSA',
+    description: 'An Act to consolidate and to provide for general rules and principles of evidence for fair trial.'
+  };
+  const chapters = bsaChapters as any;
 
-  if (!meta) {
-    notFound();
-  }
-
-  const chapters = slug === "bnss" ? bnssChapters : (slug === "bns" ? (bnsChapters as any) : []);
   const [openSection, setOpenSection] = useState<string | null>("1");
 
   const totalSections = chapters.reduce((total: number, ch: any) => total + (ch.sections?.length || 0), 0);
@@ -141,7 +141,7 @@ export default function KnowledgeCentreActPage({ params }: { params: Promise<{ a
                           {bareText && (
                             <div className="rounded-xl border border-amber-200 bg-[#fffbeb] p-4 text-slate-800">
                               <p className="text-xs font-bold uppercase tracking-wider text-amber-800 mb-2">
-                                BARE ACT TEXT (OFFICIAL BNSS GAZETTE)
+                                BARE ACT TEXT (OFFICIAL BSA GAZETTE)
                               </p>
                               <pre className="whitespace-pre-wrap font-sans text-xs sm:text-sm text-slate-800 leading-relaxed">
                                 {bareText}
