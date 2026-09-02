@@ -132,6 +132,228 @@ Illustrations.
 (c) The question is, whether A poisoned B. The state of B's health before the symptoms ascribed to poison, and habits of B, known to A, which afforded an opportunity for the administration of poison, are relevant facts.`
       }
     ]
+  },
+  {
+    chapterNum: "3",
+    chapterNumber: "3",
+    title: "Facts Which Need Not Be Proved",
+    sections: [
+      {
+        section: "51",
+        sectionNumber: "51",
+        title: "Fact judicially noticeable need not be proved",
+        ingredients: ["No fact of which Court takes judicial notice needs proof"],
+        punishment: "Judicial notice provision",
+        statutoryText: "51. No fact of which the Court will take judicial notice need be proved."
+      },
+      {
+        section: "52",
+        sectionNumber: "52",
+        title: "Facts of which Court shall take judicial notice",
+        ingredients: ["All laws in force in India", "International treaties and conventions", "Seals of Courts and Public officers"],
+        punishment: "Mandatory judicial notice categories",
+        statutoryText: "52. (1) The Court shall take judicial notice of the following facts, namely:— (a) all laws in force in India... (2) The Court may resort to appropriate books of reference."
+      },
+      {
+        section: "53",
+        sectionNumber: "53",
+        title: "Facts admitted need not be proved",
+        ingredients: ["Facts agreed to be admitted at or before hearing", "Proviso: Court may require proof otherwise than admissions"],
+        punishment: "Admitted facts waiver of proof",
+        statutoryText: "53. No fact needs to be proved in any proceeding which the parties thereto or their agents agree to admit at the hearing: Provided that the Court may, in its discretion, require the facts admitted to be proved otherwise than by such admissions."
+      }
+    ]
+  },
+  {
+    chapterNum: "4",
+    chapterNumber: "4",
+    title: "Of Oral Evidence",
+    sections: [
+      {
+        section: "54",
+        sectionNumber: "54",
+        title: "Proof of facts by oral evidence",
+        ingredients: ["All facts except contents of documents may be proved by oral evidence"],
+        punishment: "Oral evidence scope",
+        statutoryText: "54. All facts, except the contents of documents may be proved by oral evidence."
+      },
+      {
+        section: "55",
+        sectionNumber: "55",
+        title: "Oral evidence to be direct",
+        ingredients: ["Direct evidence rule (must be seen, heard, or perceived by witness)", "Opinions of experts expressed in treatises"],
+        punishment: "Direct evidence mandate",
+        statutoryText: "55. Oral evidence shall, in all cases whatever, be direct; if it refers to a fact which could be seen, it must be the evidence of a witness who says he saw it..."
+      }
+    ]
+  },
+  {
+    chapterNum: "5",
+    chapterNumber: "5",
+    title: "Of Documentary Evidence",
+    sections: [
+      {
+        section: "56",
+        sectionNumber: "56",
+        title: "Proof of contents of documents",
+        ingredients: ["May be proved either by primary or secondary evidence"],
+        punishment: "Documentary proof rule",
+        statutoryText: "56. The contents of documents may be proved either by primary or by secondary evidence."
+      },
+      {
+        section: "57",
+        sectionNumber: "57",
+        title: "Primary evidence",
+        ingredients: ["Original document produced for Court inspection", "Includes electronic records simultaneously stored or produced from proper custody"],
+        punishment: "Primary evidence definition including digital media",
+        statutoryText: "57. Primary evidence means the document itself produced for the inspection of the Court. Explanations 1 to 7 include electronic and digital records created or stored sequentially or in multiple files."
+      },
+      {
+        section: "61",
+        sectionNumber: "61",
+        title: "Electronic or digital record",
+        ingredients: ["Admissibility not denied on ground of being digital", "Has same legal effect and enforceability subject to Section 63"],
+        punishment: "Legal validity of electronic evidence",
+        statutoryText: "61. Nothing in this Adhiniyam shall apply to deny the admissibility of an electronic or digital record in the evidence on the ground that it is an electronic or digital record and such record shall, subject to section 63, have the same legal effect, validity and enforceability as other document."
+      },
+      {
+        section: "63",
+        sectionNumber: "63",
+        title: "Admissibility of electronic records",
+        ingredients: ["Computer output deemed to be document", "Conditions of lawful control, regular feed, and proper device operation", "Certificate under sub-section (4) required"],
+        punishment: "Mandatory conditions & certificate for electronic evidence (equivalent to Section 65B of IEA)",
+        statutoryText: "63. (1) Any information contained in an electronic record produced by a computer shall be deemed to be also a document... (4) Certificate signed by person in charge and expert shall be submitted."
+      }
+    ]
+  },
+  {
+    chapterNum: "6",
+    chapterNumber: "6",
+    title: "Of the Exclusion of Oral Evidence by Documentary Evidence",
+    sections: [
+      {
+        section: "94",
+        sectionNumber: "94",
+        title: "Evidence of terms of contracts, grants and dispositions of property",
+        ingredients: ["Document itself must be proved", "Exclusion of oral evidence to substitute terms"],
+        punishment: "Best evidence rule for contracts and legal documents",
+        statutoryText: "94. When the terms of a contract, grant or disposition have been reduced to the form of a document, no evidence shall be given in proof except the document itself."
+      }
+    ]
+  },
+  {
+    chapterNum: "7",
+    chapterNumber: "7",
+    title: "Of the Burden of Proof",
+    sections: [
+      {
+        section: "104",
+        sectionNumber: "104",
+        title: "Burden of proof",
+        ingredients: ["Burden lies on the person asserting legal right or liability"],
+        punishment: "General burden of proof rule",
+        statutoryText: "104. Whoever desires any Court to give judgment as to any legal right or liability dependent on the existence of facts which he asserts must prove that those facts exist."
+      },
+      {
+        section: "105",
+        sectionNumber: "105",
+        title: "On whom burden of proof lies",
+        ingredients: ["Lies on the person who would fail if no evidence were given"],
+        punishment: "Onus of proof test",
+        statutoryText: "105. The burden of proof in a suit or proceeding lies on that person who would fail if no evidence at all were given on either side."
+      }
+    ]
+  },
+  {
+    chapterNum: "8",
+    chapterNumber: "8",
+    title: "Estoppel",
+    sections: [
+      {
+        section: "121",
+        sectionNumber: "121",
+        title: "Estoppel",
+        ingredients: ["Representation causing another to believe a fact", "Party estopped from denying truth of that thing"],
+        punishment: "Doctrine of estoppel",
+        statutoryText: "121. When one person has, by his declaration, act or omission, intentionally caused or permitted another person to believe a thing to be true and to act upon such belief, neither he nor his representative shall be allowed to deny the truth of that thing."
+      }
+    ]
+  },
+  {
+    chapterNum: "9",
+    chapterNumber: "9",
+    title: "Of Witnesses",
+    sections: [
+      {
+        section: "124",
+        sectionNumber: "124",
+        title: "Who may testify",
+        ingredients: ["All persons competent unless prevented by tender years, extreme old age, or disease"],
+        punishment: "Witness competency rule",
+        statutoryText: "124. All persons shall be competent to testify unless the Court considers that they are prevented from understanding questions put to them."
+      },
+      {
+        section: "132",
+        sectionNumber: "132",
+        title: "Professional communications",
+        ingredients: ["Advocate privileged communication with client", "Exceptions: illegal purpose and crime/fraud observed during service"],
+        punishment: "Legal professional privilege protection",
+        statutoryText: "132. No advocate shall at any time be permitted, unless with his client express consent, to disclose any communication made to him in the course of his service."
+      }
+    ]
+  },
+  {
+    chapterNum: "10",
+    chapterNumber: "10",
+    title: "Of Examination of Witnesses",
+    sections: [
+      {
+        section: "142",
+        sectionNumber: "142",
+        title: "Examination of witnesses",
+        ingredients: ["Examination-in-chief", "Cross-examination", "Re-examination"],
+        punishment: "Classification of witness examinations",
+        statutoryText: "142. (1) Examination-in-chief. (2) Cross-examination. (3) Re-examination."
+      },
+      {
+        section: "146",
+        sectionNumber: "146",
+        title: "Leading questions",
+        ingredients: ["Questions suggesting answer", "Permitted in cross-examination"],
+        punishment: "Leading questions parameters",
+        statutoryText: "146. Leading questions must not, if objected to by adverse party, be asked in examination-in-chief or re-examination except with permission of Court. Permitted in cross-examination."
+      }
+    ]
+  },
+  {
+    chapterNum: "11",
+    chapterNumber: "11",
+    title: "Of Improper Admission and Rejection of Evidence",
+    sections: [
+      {
+        section: "169",
+        sectionNumber: "169",
+        title: "No new trial for improper admission or rejection of evidence",
+        ingredients: ["Improper admission or rejection not sole ground for new trial if sufficient evidence exists"],
+        punishment: "Finality rule on evidentiary technicalities",
+        statutoryText: "169. The improper admission or rejection of evidence shall not be ground of itself for a new trial or reversal of any decision in any case, if it shall appear to the Court that there was sufficient evidence to justify the decision."
+      }
+    ]
+  },
+  {
+    chapterNum: "12",
+    chapterNumber: "12",
+    title: "Repeal and Savings",
+    sections: [
+      {
+        section: "170",
+        sectionNumber: "170",
+        title: "Repeal and savings",
+        ingredients: ["Repeal of Indian Evidence Act, 1872", "Pending proceedings saved under old Act"],
+        punishment: "Statutory repeal and transition clause",
+        statutoryText: "170. (1) The Indian Evidence Act, 1872 is hereby repealed. (2) Pending proceedings dealt with under Indian Evidence Act, 1872 as if this Adhiniyam had not come into force."
+      }
+    ]
   }
 ];
 export default bsaChapters;
